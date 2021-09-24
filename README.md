@@ -1,4 +1,35 @@
-# Getting Started with Create React App
+# Note
+
+## Run the app
+
+### 1. Set local App
+
+```bash
+mkdir ToDoApp
+cd ToDoApp
+```
+
+### 2. Set API
+
+```bash
+git clone https://github.com/datawowio/todos-json-server.git
+cd todos-json-server
+yarn
+yarn start
+```
+
+### 3. Start the App
+
+```bash
+git clone https://github.com/patorseing/todoapp-wowdata.git
+cd todoapp-wowdata
+yarn
+yarn start
+```
+
+### 4. Test the app
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
