@@ -126,7 +126,7 @@ button.dropbtn > p {
 }
 
 .dropdown-content {
-  display: none;
+  /* display: none; */
   margin-top: 2rem;
   position: absolute;
   background-color: #ffffff;
@@ -134,6 +134,7 @@ button.dropbtn > p {
   box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   padding: 0.5rem 0.5rem 0 0.5rem;
+  display: grid;
 }
 
 .dropdown-content a {
@@ -154,20 +155,21 @@ button.dropbtn > p {
 }
 
 
-.dropdown-content p:hover {
+.dropdown-content p:hover  {
   color: #fff;
   background-color: #585292;
 }
 
-.dropdown:hover .dropdown-content {
-  display: block;
+.dropdown-edit p:hover  {
+  color: #fff;
+  background-color: #585292;
 }
 
 @media only screen and (max-width: 600px) {
   button.dropbtn > p {
     font-size: 120%;
   }
-  .dropdown-content p {
+  a > p {
     font-size: 90%;
   }
 }
@@ -177,10 +179,16 @@ button.dropbtn > p {
   border-radius: 999px !important;
   text-align: left;
   padding: 15px;
+  display: block;
+}
+
+.box-checklist-input {
+  margin-top: 20px
 }
 
 button.edit path {
   fill: #9796A8;
+  width: 100%;
 }
 
 .checkbox-symbol {
@@ -204,8 +212,8 @@ button.edit path {
 }
 
 .checkbox span {
-  width: 22px;
-  height: 22px;
+  width: 1.5rem;
+  height: 1.35rem;
   border-radius: 6px;
   transform: scale(1);
   transition: all 0.3s ease;
@@ -215,7 +223,7 @@ button.edit path {
 .checkbox span:first-child svg {
   position: absolute;
   top: 4px;
-  left: 3px;
+  left: 2px;
   fill: none;
   stroke: #fff;
   stroke-dasharray: 16px;
@@ -242,4 +250,72 @@ button.edit path {
   50% {
     transform: scale(0.9);
   }
+}
+
+.todofield {
+  margin-left: 8px;
+  border: 0;
+  width: 100%;
+  font-size: .85rem;
+}
+
+input[type="text"]:disabled {
+  background-color: #ffffff;
+}
+
+input[name="unchecked"]:disabled {
+  color: black;
+}
+
+input[name="checked"]:disabled  {
+  text-decoration-line: line-through;
+  color: #A9A9A9;
+}
+
+input:focus{
+  outline: none;
+}
+
+.dropdown-edit {
+  /* display: none; */
+  display: grid;
+  margin-top: 1.25rem;
+  position: absolute;
+  background-color: #ffffff;
+  z-index: 1;
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  padding: 0.5rem 0.5rem 0 0.5rem;
+}
+
+.dropdown-edit a {
+  color: black;
+  text-decoration: none;
+  text-align: left;
+  font-size: 0.rem;
+  padding: 0;
+  align-items: center;
+}
+
+.dropdown-edit p {
+  padding: 0.25rem 0.5rem;
+  border-radius: 8px;
+  margin: 0 0 0.5rem 0;
+  font-size: 75%;
+}
+
+.edit {
+  text-align: right !important;
+}
+
+.color-delete {
+  color: #E07C7C
+}
+
+.save-btn {
+  background: #585292;
+  border-radius: 999px;
+  color: #fff;
+  padding: 6px 12px;
+  font-size: smaller;
 }
