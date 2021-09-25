@@ -29,8 +29,8 @@ function App() {
           <p className="completed">{completed} completed</p>
         </div>
         <div className="col-9 col-s-9 box-task">
-          <p className="col-10 col-s-9 task">Tasks</p>
-          <div className="col-2 col-s-3 dropdown">
+          <p className="col-10 col-s-8 task">Tasks</p>
+          <div className="col-2 col-s-4 dropdown">
             <button className="col-12 col-s-12 dropbtn">
               <p className="col-11 col-s-11">Undone</p>
               <FontAwesomeIcon icon="chevron-down" className="col-1 col-s-1" />
@@ -48,6 +48,38 @@ function App() {
             </div>
           </div>
         </div>
+        <div className="col-9 col-s-9">
+          <div className="col-12">
+            <svg className="checkbox-symbol">
+              <symbol id="check" viewbox="0 0 12 10">
+                <polyline
+                  points="1.5 6 4.5 9 10.5 1"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                ></polyline>
+              </symbol>
+            </svg>
+
+            <input className="checkbox-input" id="todo" type="checkbox" />
+            <label className="checkbox box-checklist" for="todo">
+              <span>
+                <svg
+                  width="12px"
+                  height="10px"
+                  dangerouslySetInnerHTML={{
+                    __html: '<use xlink:href="#check"></use>',
+                  }}
+                />
+              </span>
+              <input type="text" name="todo" value="Publish a new blog" />
+              <button className="edit">
+                <FontAwesomeIcon icon="ellipsis-h" />
+              </button>
+            </label>
+          </div>
+        </div>
+        <div className="col-9 col-s-9 box-input"></div>
       </div>
     </div>
   );

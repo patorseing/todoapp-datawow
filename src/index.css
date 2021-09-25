@@ -6,6 +6,10 @@ body {
   background-color: #D1D0D9;
 }
 
+[class*="col-"] {
+  float: left;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

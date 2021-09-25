@@ -6,9 +6,9 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faChevronDown } from '@fortawesome/free-solid-svg-icons'
+import { faChevronDown, faEllipsisH } from '@fortawesome/free-solid-svg-icons'
 
-library.add(faChevronDown);
+library.add(faChevronDown, faEllipsisH);
 
 ReactDOM.render(
   <React.StrictMode>
