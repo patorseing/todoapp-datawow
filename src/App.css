@@ -137,7 +137,7 @@ button.dropbtn > p {
   display: grid;
 }
 
-.dropdown-content a {
+.dropdown-content button {
   color: black;
   text-decoration: none;
   display: block;
@@ -151,7 +151,7 @@ button.dropbtn > p {
   padding: 0.25rem 0.5rem;
   border-radius: 8px;
   margin: 0 0 0.5rem 0;
-  font-size: 75%;
+  font-size: 90%;
 }
 
 
@@ -168,9 +168,6 @@ button.dropbtn > p {
 @media only screen and (max-width: 600px) {
   button.dropbtn > p {
     font-size: 120%;
-  }
-  a > p {
-    font-size: 90%;
   }
 }
 
@@ -288,7 +285,7 @@ input:focus{
   padding: 0.5rem 0.5rem 0 0.5rem;
 }
 
-.dropdown-edit a {
+.dropdown-edit button {
   color: black;
   text-decoration: none;
   text-align: left;
@@ -297,7 +294,7 @@ input:focus{
   align-items: center;
 }
 
-.dropdown-edit p {
+.dropdown-edit  {
   padding: 0.25rem 0.5rem;
   border-radius: 8px;
   margin: 0 0 0.5rem 0;
