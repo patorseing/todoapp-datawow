@@ -1,38 +1,87 @@
+import { useState, useContext } from "react";
+import { MenuButton } from "./menuButton";
+import { updateData } from "../services/updateData";
+import { AppContext } from "../contexts/AppContext";
+
 export const ToDoItem = (props) => {
-  const { id, title, completed } = props;
+  const inputStyle = {
+    true: {
+      textDecorationLine: "line-through",
+      color: "#A9A9A9",
+    },
+    false: {
+      color: "black",
+    },
+  };
+
+  const [task, setTask] = useState(props.task);
+
+  const [complete, setCompleted] = useState(task.completed);
+  const [show, setShow] = useState(false);
+  const { dispatch } = useContext(AppContext);
+
+  const toggleHandler = () => {
+    setShow(!show);
+  };
+  const display = {
+    true: "grid",
+    false: "none",
+  };
+
+  const ToggleShowStyles = (showed) => ({
+    display: display[showed],
+  });
+
+  const handleCheck = () => {
+    const completed = !complete;
+    const updateBody = { ...props.task, completed };
+    setCompleted(completed);
+    setTask(updateBody);
+    updateData(dispatch, updateBody);
+  };
+
+  const menu = ["Edit", "Delete"];
 
   return (
     <div className="col-s-9">
       <svg className="checkbox-symbol">
-        <symbol id="check" viewbox="0 0 12 10">
+        <symbol id="check" viewBox="0 0 12 10">
           <polyline
             points="1.5 6 4.5 9 10.5 1"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
           ></polyline>
         </symbol>
       </svg>
-      <input className="checkbox-input" id="todo" type="checkbox" checked />
-      <label className="checkbox box-checklist" for="todo">
+      <input
+        className="checkbox-input"
+        id={`todo-${task.id}`}
+        type="checkbox"
+        defaultChecked={complete}
+        onChange={() => {
+          handleCheck();
+        }}
+      />
+      <label className="checkbox box-checklist" htmlFor={`todo-${task.id}`}>
         <span>
           <svg
             width="12px"
             height="10px"
             dangerouslySetInnerHTML={{
-              __html: '<use xlink:href="#check"></use>',
+              __html: `<use xlink:href="#check"></use>`,
             }}
           />
         </span>
         <input
           className="col-11 col-m-10 col-m-9 todofield"
           type="text"
-          name="checked"
-          value="Publish a new blog"
+          defaultValue={task.title}
           disabled
+          style={inputStyle[complete]}
         />
         <div className="col-1 col-m-2 col-s-3">
-          <button className="col-s-12 edit">
+          <button className="col-s-12 edit" onClick={toggleHandler}>
             <svg
               width="20"
               height="6"
@@ -46,6 +95,14 @@ export const ToDoItem = (props) => {
               />
             </svg>
           </button>
+          <div
+            className="col-1 col-m-2 col-s-3 dropdown-edit"
+            style={ToggleShowStyles(show)}
+          >
+            {menu.map((m, i) => (
+              <MenuButton expect={m} key={i} />
+            ))}
+          </div>
         </div>
       </label>
     </div>

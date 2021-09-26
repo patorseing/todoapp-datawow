@@ -5,7 +5,13 @@ export const MenuButton = (props) => {
 
   return (
     <button
-      className={classnames("col-s-12", { "menu-active": main === expect })}
+      className={classnames(
+        "col-s-12",
+        {
+          "menu-active": main === expect,
+        },
+        { "color-delete": expect === "Delete" }
+      )}
       onClick={() => changeFilter(expect)}
     >
       <p>{expect}</p>
