@@ -1,4 +1,4 @@
-import { CHANGE_MENU, LOADING, LOAD_DATA } from "./AppState";
+import { CHANGE_MENU, LOADING, LOAD_DATA, ADD_DATA } from "./AppState";
 
 const menuConditions = (menu, todo) =>
   ({
@@ -13,7 +13,7 @@ export const reducer = (state, action) => {
       return { ...state, loading: true };
     case LOAD_DATA:
       // You can await here
-      const todoList = action.payload
+      const todoList = action.payload;
       return {
         ...state,
         loading: false,
@@ -23,6 +23,9 @@ export const reducer = (state, action) => {
       };
     case CHANGE_MENU:
       return { ...state, menu: action.payload };
+    case ADD_DATA:
+      state.todoList.push(action.payload);
+      return state;
     default:
       throw new Error();
   }

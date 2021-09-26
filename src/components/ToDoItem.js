@@ -2,6 +2,7 @@ import { useState, useContext } from "react";
 import { MenuButton } from "./menuButton";
 import { updateData } from "../services/updateData";
 import { AppContext } from "../contexts/AppContext";
+import { deleteData } from "../services/deleteData";
 
 export const ToDoItem = (props) => {
   const inputStyle = {
@@ -40,7 +41,20 @@ export const ToDoItem = (props) => {
     updateData(dispatch, updateBody);
   };
 
-  const menu = ["Edit", "Delete"];
+  const menus = [
+    {
+      menu: "Edit",
+      fnc: (id) => {
+        console.log(id);
+      },
+    },
+    {
+      menu: "Delete",
+      fnc: (id) => {
+        deleteData(dispatch, id);
+      },
+    },
+  ];
 
   return (
     <div className="col-s-9">
@@ -99,8 +113,13 @@ export const ToDoItem = (props) => {
             className="col-1 col-m-2 col-s-3 dropdown-edit"
             style={ToggleShowStyles(show)}
           >
-            {menu.map((m, i) => (
-              <MenuButton expect={m} key={i} />
+            {menus.map((menu, i) => (
+              <MenuButton
+                expect={menu.menu}
+                fnc={menu.fnc}
+                main={task.id}
+                key={i}
+              />
             ))}
           </div>
         </div>

@@ -47,7 +47,7 @@ export const TaskHeader = () => {
             <MenuButton
               main={state.menu}
               expect={m}
-              changeFilter={changeFilter}
+              fnc={changeFilter}
               key={i}
             />
           ))}

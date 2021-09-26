@@ -1,11 +1,13 @@
 import "./App.scss";
 import { useReducer, useEffect } from "react";
-import { Progress } from "./components/progressPanel";
-import { TaskHeader } from "./components/taskHeader";
-import { ToDoItem } from "./components/toDoItem";
 import { AppContext, initialState } from "./contexts/AppContext";
 import { reducer } from "./contexts/AppReducer";
 import { fetchData } from "./services/fetchData";
+
+import { Progress } from "./components/progressPanel";
+import { TaskHeader } from "./components/taskHeader";
+import { ToDoItem } from "./components/toDoItem";
+import { AddTodoField } from "./components/addTodo";
 
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -94,15 +96,8 @@ function App() {
           <div className="col-s-2">
             <button className="save-btn">Save</button>
           </div>
-        </div>
-        <div className="col-s-9 box-checklist box-checklist-input">
-          <input
-            className="col-s-11 todofield"
-            type="text"
-            name="todo"
-            placeholder="Add your todo..."
-          />
-        </div> */}
+        </div>*/}
+          <AddTodoField />
         </div>
       </div>
     </AppContext.Provider>
