@@ -5,10 +5,14 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { faChevronDown, faEllipsisH } from '@fortawesome/free-solid-svg-icons'
+import { library } from "@fortawesome/fontawesome-svg-core";
+import {
+  faChevronDown,
+  faEllipsisH,
+  faSpinner,
+} from "@fortawesome/free-solid-svg-icons";
 
-library.add(faChevronDown, faEllipsisH);
+library.add(faChevronDown, faEllipsisH, faSpinner);
 
 ReactDOM.render(
   <React.StrictMode>

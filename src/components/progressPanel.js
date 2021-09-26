@@ -1,5 +1,9 @@
-export const Progress = (props) => {
-  const { completedNum, allNum } = props;
+import { useContext } from "react";
+import { AppContext } from "../contexts/AppContext";
+
+export const Progress = () => {
+  const { state } = useContext(AppContext);
+  const { completed, total } = state;
 
   const containerStyles = {
     width: "100%",
@@ -9,7 +13,7 @@ export const Progress = (props) => {
 
   const fillerStyles = {
     height: "0.5rem",
-    width: `${(completedNum / allNum) * 100}%`,
+    width: `${(completed / total) * 100}%`,
     backgroundColor: "#ffffff",
     borderRadius: "inherit",
     textAlign: "right",
@@ -17,11 +21,13 @@ export const Progress = (props) => {
 
   return (
     <div className="col-9 col-s-9 box-progress">
-      <p className="progress">Progress</p>
+      <p className="progress">
+        Progress
+      </p>
       <div style={containerStyles}>
         <div style={fillerStyles}></div>
       </div>
-      <p className="completed">{completedNum} completed</p>
+      <p className="completed">{completed} completed</p>
     </div>
   );
 };

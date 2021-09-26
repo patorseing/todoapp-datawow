@@ -1,28 +1,25 @@
 import "./App.css";
-import { useEffect, useState } from "react";
+import { useReducer, useEffect } from "react";
 import { Progress } from "./components/progressPanel";
-import { TaskHeader } from "./components/TaskHeader";
-function App() {
-  const [completedNum, stCompletedNum] = useState(0);
-  const [allNum, setAllNum] = useState(0);
+import { TaskHeader } from "./components/taskHeader";
+import { AppContext, initialState } from "./contexts/AppContext";
+import {reducer} from "./contexts/AppReducer";
+import {fetchData} from './services/fetchData'
 
-  useEffect(() => {
-    async function fetchData() {
-      // You can await here
-      const response = await fetch(window.env.API_URL);
-      const todoList = await response.json();
-      setAllNum(todoList.length);
-      stCompletedNum(todoList.filter((todo) => todo.completed).length);
-    }
-    fetchData();
-  }, []);
+function App() {
+  const [state, dispatch] = useReducer(reducer, initialState);
+
+  useEffect(() =>{ // adjust args to your needs
+    fetchData(dispatch);
+  }, [])
 
   return (
-    <div className="App">
-      <div className="col-6 col-m-8 col-s-10 box">
-        <Progress completedNum={completedNum} allNum={allNum} />
-        <TaskHeader />
-        {/* <div className="col-s-9">
+    <AppContext.Provider value={{state, dispatch}}>
+      <div className="App">
+        <div className="col-6 col-m-8 col-s-10 box">
+          <Progress />
+          <TaskHeader />
+          {/* <div className="col-s-9">
           <svg className="checkbox-symbol">
             <symbol id="check" viewbox="0 0 12 10">
               <polyline
@@ -99,8 +96,9 @@ function App() {
             placeholder="Add your todo..."
           />
         </div> */}
+        </div>
       </div>
-    </div>
+    </AppContext.Provider>
   );
 }
 
