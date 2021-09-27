@@ -1,8 +1,8 @@
-import "./App.scss";
+import "./styles/App.scss";
 import { useReducer, useEffect } from "react";
 import { AppContext, initialState } from "./contexts/AppContext";
 import { reducer } from "./contexts/AppReducer";
-import { fetchData } from "./services/fetchData";
+import { readData } from "./services/crudData";
 
 import { Progress } from "./components/progressPanel";
 import { TaskHeader } from "./components/taskHeader";
@@ -14,7 +14,7 @@ function App() {
 
   useEffect(() => {
     // adjust args to your needs
-    fetchData(dispatch);
+    readData(dispatch);
   }, []);
 
   return (
@@ -23,7 +23,6 @@ function App() {
         <div className="col-6 col-m-8 col-s-10 box">
           <Progress />
           <TaskHeader />
-
           {state.todoList.map((task, i) => (
             <ToDoItem task={task} key={i} />
           ))}

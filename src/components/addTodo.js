@@ -1,6 +1,5 @@
 import { useState, useContext, useEffect } from "react";
-import { addData } from "../services/addData";
-import { updateData } from "../services/updateData";
+import { createData, updateData } from "../services/crudData";
 import { AppContext } from "../contexts/AppContext";
 
 export const AddTodoField = (props) => {
@@ -18,7 +17,7 @@ export const AddTodoField = (props) => {
       setTaskItem(task)
     },
     false: (task) => {
-      addData(dispatch, task);
+      createData(dispatch, task);
     },
   };
 
@@ -71,7 +70,7 @@ export const AddTodoField = (props) => {
   });
 
   return (
-    <div className="col-s-9 box-checklist box-checklist-input">
+    <div className="col-s-9 box-checklist box-checklist-input" >
       <div className="col-s-8 col-m-10">
         <input
           className="todofield"
@@ -89,11 +88,10 @@ export const AddTodoField = (props) => {
           }}
         />
       </div>
-      <div className="col-s-4 col-m-2" style={{ textAlign: "right" }}>
+      <div className="col-s-4 col-m-2" style={ToggleShowStyles(show)}>
         <button
           className="save-btn"
           onClick={handleSave}
-          style={ToggleShowStyles(show)}
         >
           Save
         </button>

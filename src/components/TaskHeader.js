@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { MenuButton } from "./menuButton";
 import { AppContext } from "../contexts/AppContext";
 import { CHANGE_MENU, Loading } from "../contexts/AppState";
-import { fetchData } from "../services/fetchData";
+import { readData } from "../services/crudData";
 
 export const TaskHeader = () => {
   const menu = ["All", "Done", "Undone"];
@@ -26,7 +26,7 @@ export const TaskHeader = () => {
   const changeFilter = (changedMenu) => {
     dispatch({ type: CHANGE_MENU, payload: changedMenu });
     toggleHandler();
-    fetchData(dispatch);
+    readData(dispatch);
   };
 
   return (

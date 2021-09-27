@@ -1,8 +1,7 @@
 import { useState, useContext } from "react";
 import { MenuButton } from "./menuButton";
-import { updateData } from "../services/updateData";
+import { updateData, deleteData } from "../services/crudData";
 import { AppContext } from "../contexts/AppContext";
-import { deleteData } from "../services/deleteData";
 import { AddTodoField } from "./addTodo";
 
 export const ToDoItem = (props) => {
@@ -61,7 +60,7 @@ export const ToDoItem = (props) => {
   ];
 
   return showEdit ? (
-    <AddTodoField todo={task} switchShow={setShowEdit} setTaskItem={setTask}/>
+    <AddTodoField todo={task} switchShow={setShowEdit} setTaskItem={setTask} />
   ) : (
     <div className="col-s-9">
       <svg className="checkbox-symbol">
@@ -94,11 +93,11 @@ export const ToDoItem = (props) => {
           />
         </span>
         <input
-          className="col-11 col-m-10 col-m-9 todofield"
+          className="todofield"
           type="text"
           defaultValue={task.title}
           disabled
-          style={{ ...inputStyle[complete], marginLeft: "8px" }}
+          style={{ ...inputStyle[complete] }}
         />
         <div className="col-1 col-m-2 col-s-3">
           <button className="col-s-12 edit" onClick={toggleHandler}>
@@ -116,7 +115,7 @@ export const ToDoItem = (props) => {
             </svg>
           </button>
           <div
-            className="col-1 col-m-2 col-s-3 dropdown-edit"
+            className="dropdown-edit"
             style={ToggleShowStyles(show)}
           >
             {menus.map((menu, i) => (

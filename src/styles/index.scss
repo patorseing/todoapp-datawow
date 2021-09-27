@@ -1,9 +1,11 @@
+@import "settings";
+
 body {
   margin: 0;
-  font-family: -apple-system, 'Roboto',sans-serif;
+  font-family: $base-fonts;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #D1D0D9;
+  background-color: $bg-color;
 }
 
 [class*="col-"] {
@@ -11,8 +13,7 @@ body {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: $second-font;
 }
 
 @media only screen and (min-width: 320px) {
