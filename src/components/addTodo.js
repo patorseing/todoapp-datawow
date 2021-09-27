@@ -81,7 +81,7 @@ export const AddTodoField = (props) => {
           value={task.title}
           onChange={handleChange}
           onBlur={() => {
-            setShow(false);
+            Object.keys(task).includes("id") ? setShow(true) : setShow(false);
           }}
           onFocus={() => {
             setShow(true);
