@@ -3,6 +3,7 @@ import { MenuButton } from "./menuButton";
 import { updateData } from "../services/updateData";
 import { AppContext } from "../contexts/AppContext";
 import { deleteData } from "../services/deleteData";
+import { AddTodoField } from "./addTodo";
 
 export const ToDoItem = (props) => {
   const inputStyle = {
@@ -19,6 +20,7 @@ export const ToDoItem = (props) => {
 
   const [complete, setCompleted] = useState(task.completed);
   const [show, setShow] = useState(false);
+  const [showEdit, setShowEdit] = useState(false);
   const { dispatch } = useContext(AppContext);
 
   const toggleHandler = () => {
@@ -44,19 +46,23 @@ export const ToDoItem = (props) => {
   const menus = [
     {
       menu: "Edit",
-      fnc: (id) => {
-        console.log(id);
+      fnc: () => {
+        setShowEdit(true);
+        toggleHandler();
       },
     },
     {
       menu: "Delete",
       fnc: (id) => {
         deleteData(dispatch, id);
+        toggleHandler();
       },
     },
   ];
 
-  return (
+  return showEdit ? (
+    <AddTodoField todo={task} switchShow={setShowEdit} />
+  ) : (
     <div className="col-s-9">
       <svg className="checkbox-symbol">
         <symbol id="check" viewBox="0 0 12 10">
@@ -92,7 +98,7 @@ export const ToDoItem = (props) => {
           type="text"
           defaultValue={task.title}
           disabled
-          style={inputStyle[complete]}
+          style={{ ...inputStyle[complete], marginLeft: "8px" }}
         />
         <div className="col-1 col-m-2 col-s-3">
           <button className="col-s-12 edit" onClick={toggleHandler}>

@@ -177,10 +177,15 @@ button.dropbtn > p {
   text-align: left;
   padding: 15px;
   display: block;
+  height: 57px;
 }
 
 .box-checklist-input {
-  margin-top: 20px
+  margin-top: 20px;
+}
+
+.box-checklist-input:last-child {
+  margin-bottom: 7.25%;
 }
 
 button.edit path {
@@ -215,6 +220,7 @@ button.edit path {
   transform: scale(1);
   transition: all 0.3s ease;
   border: 2px solid #585292;
+  margin-top: 0.5%;
 }
 
 .checkbox span:first-child svg {
@@ -250,10 +256,9 @@ button.edit path {
 }
 
 .todofield {
-  margin-left: 8px;
   border: 0;
-  width: 100%;
   font-size: .85rem;
+  width: 100%;
 }
 
 input[type="text"]:disabled {
@@ -263,6 +268,10 @@ input[type="text"]:disabled {
 
 input:focus{
   outline: none;
+}
+
+input[type="text"]:blur .save-btn {
+  display: none !important;
 }
 
 .dropdown-edit {
@@ -300,6 +309,8 @@ input:focus{
   color: #fff;
   padding: 6px 12px;
   font-size: smaller;
+  text-align: center;
+  cursor: pointer;
 }
 
 .menu-active p {

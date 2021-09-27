@@ -4,14 +4,15 @@ import { ADD_DATA } from "../contexts/AppState";
 export const addData = async (dispatch, task) => {
   // You can await here
   try {
-    await fetch(`${window.env.API_URL}`, {
+    const res = await fetch(`${window.env.API_URL}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(task),
     });
-    await dispatch({ type: ADD_DATA, payload: task });
+    const todo = await res.json();
+    await dispatch({ type: ADD_DATA, payload: todo });
     await fetchData(dispatch);
   } catch (err) {
     alert(err.message);
