@@ -42,7 +42,7 @@ export const AddTodoField = (props) => {
       try {
         func[edit](task);
         setTask(initTodo);
-        toggleHandler();
+        setShow(false);
       } catch (error) {
         setTask(og);
       }
@@ -54,7 +54,7 @@ export const AddTodoField = (props) => {
     try {
       func[edit](task);
       setTask(initTodo);
-      toggleHandler();
+      setShow(false);
     } catch (error) {
       setTask(og);
     }
@@ -63,12 +63,6 @@ export const AddTodoField = (props) => {
   const display = {
     true: "grid",
     false: "none",
-  };
-
-  const toggleHandler = () => {
-    if (!Object.keys(task).includes("id")) {
-      setShow(!show);
-    }
   };
 
   const ToggleShowStyles = (showed) => ({
@@ -86,7 +80,12 @@ export const AddTodoField = (props) => {
           onKeyDown={keyPress}
           value={task.title}
           onChange={handleChange}
-          onClick={toggleHandler}
+          onBlur={() => {
+            setShow(false);
+          }}
+          onFocus={() => {
+            setShow(true);
+          }}
         />
       </div>
       <div className="col-s-4 col-m-2" style={{ textAlign: "right" }}>
