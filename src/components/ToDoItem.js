@@ -15,13 +15,13 @@ export const ToDoItem = (props) => {
       color: "black",
     },
   };
+  const [show, setShow] = useState(false);
+  const [showEdit, setShowEdit] = useState(false);
+  const { dispatch } = useContext(AppContext);
 
   const [task, setTask] = useState(props.task);
 
   const [complete, setCompleted] = useState(task.completed);
-  const [show, setShow] = useState(false);
-  const [showEdit, setShowEdit] = useState(false);
-  const { dispatch } = useContext(AppContext);
 
   const toggleHandler = () => {
     setShow(!show);
@@ -61,7 +61,7 @@ export const ToDoItem = (props) => {
   ];
 
   return showEdit ? (
-    <AddTodoField todo={task} switchShow={setShowEdit} />
+    <AddTodoField todo={task} switchShow={setShowEdit} setTaskItem={setTask}/>
   ) : (
     <div className="col-s-9">
       <svg className="checkbox-symbol">

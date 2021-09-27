@@ -5,7 +5,7 @@ import { AppContext } from "../contexts/AppContext";
 
 export const AddTodoField = (props) => {
   const initTodo = { title: "", completed: false };
-  const { todo, switchShow } = props;
+  const { todo, switchShow, setTaskItem } = props;
   const [show, setShow] = useState(false);
   const [edit, setEdit] = useState(false);
   const [task, setTask] = useState(initTodo);
@@ -15,6 +15,7 @@ export const AddTodoField = (props) => {
     true: (task) => {
       updateData(dispatch, task);
       switchShow(false);
+      setTaskItem(task)
     },
     false: (task) => {
       addData(dispatch, task);

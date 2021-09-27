@@ -1,4 +1,9 @@
-import { CHANGE_MENU, LOADING, LOAD_DATA, ADD_DATA } from "./AppState";
+import {
+  CHANGE_MENU,
+  LOADING,
+  LOAD_DATA,
+  ADD_DATA
+} from "./AppState";
 
 const menuConditions = (menu, todo) =>
   ({

@@ -10,7 +10,7 @@ export const updateData = async (dispatch, task) => {
       },
       body: JSON.stringify(task),
     });
-    await fetchData(dispatch)
+    await fetchData(dispatch);
   } catch (err) {
     alert(err.message);
   }
