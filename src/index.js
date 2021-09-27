@@ -8,11 +8,10 @@ import reportWebVitals from "./reportWebVitals";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
   faChevronDown,
-  faEllipsisH,
   faSpinner,
 } from "@fortawesome/free-solid-svg-icons";
 
-library.add(faChevronDown, faEllipsisH, faSpinner);
+library.add(faChevronDown, faSpinner);
 
 ReactDOM.render(
   <React.StrictMode>

@@ -1,10 +1,11 @@
 import { useState, useContext, useEffect } from "react";
 import { createData, updateData } from "../services/crudData";
 import { AppContext } from "../contexts/AppContext";
+import { display } from '../contexts/AppState';
 
 export const AddTodoField = (props) => {
-  const initTodo = { title: "", completed: false };
   const { todo, switchShow, setTaskItem } = props;
+  const initTodo = { title: "", completed: false };
   const [show, setShow] = useState(false);
   const [edit, setEdit] = useState(false);
   const [task, setTask] = useState(initTodo);
@@ -14,7 +15,7 @@ export const AddTodoField = (props) => {
     true: (task) => {
       updateData(dispatch, task);
       switchShow(false);
-      setTaskItem(task)
+      setTaskItem(task);
     },
     false: (task) => {
       createData(dispatch, task);
@@ -36,20 +37,7 @@ export const AddTodoField = (props) => {
     setTask({ ...task, title: e.target.value });
   };
 
-  const keyPress = (e) => {
-    if (e.keyCode === 13) {
-      const og = task;
-      try {
-        func[edit](task);
-        setTask(initTodo);
-        setShow(false);
-      } catch (error) {
-        setTask(og);
-      }
-    }
-  };
-
-  const handleSave = () => {
+  const save = () => {
     const og = task;
     try {
       func[edit](task);
@@ -60,9 +48,14 @@ export const AddTodoField = (props) => {
     }
   };
 
-  const display = {
-    true: "grid",
-    false: "none",
+  const keyPress = (e) => {
+    if (e.keyCode === 13) {
+      save();
+    }
+  };
+
+  const handleSave = () => {
+    save();
   };
 
   const ToggleShowStyles = (showed) => ({
@@ -70,7 +63,7 @@ export const AddTodoField = (props) => {
   });
 
   return (
-    <div className="col-s-9 box-checklist box-checklist-input" >
+    <div className="col-s-9 box-checklist box-checklist-input">
       <div className="col-s-8 col-m-10">
         <input
           className="todofield"
@@ -80,19 +73,13 @@ export const AddTodoField = (props) => {
           onKeyDown={keyPress}
           value={task.title}
           onChange={handleChange}
-          onBlur={() => {
-            Object.keys(task).includes("id") ? setShow(true) : setShow(false);
-          }}
           onFocus={() => {
             setShow(true);
           }}
         />
       </div>
       <div className="col-s-4 col-m-2" style={ToggleShowStyles(show)}>
-        <button
-          className="save-btn"
-          onClick={handleSave}
-        >
+        <button className="save-btn" onClick={handleSave}>
           Save
         </button>
       </div>

@@ -1,16 +1,10 @@
 import {
+  menuConditions,
   CHANGE_MENU,
   LOADING,
   LOAD_DATA,
   ADD_DATA
 } from "./AppState";
-
-const menuConditions = (menu, todo) =>
-  ({
-    All: true,
-    Done: !!todo.completed,
-    Undone: !todo.completed,
-  }[menu]);
 
 export const reducer = (state, action) => {
   switch (action.type) {

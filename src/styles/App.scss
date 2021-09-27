@@ -135,7 +135,7 @@ button.dropbtn > p {
   padding: 0.25rem 0.5rem;
   border-radius: 8px;
   margin: 0 0 0.5rem 0;
-  font-size: 90%;
+  font-size: 100%;
 }
 
 .dropdown-edit p {
@@ -255,7 +255,7 @@ input:focus {
 }
 
 .dropdown-edit {
-  margin-top: 1.25rem;
+  margin-top: 1.5rem;
   position: absolute;
   background-color: $decoration;
   z-index: 1;
@@ -311,7 +311,7 @@ input:focus {
   }
 }
 
-@media only screen and (max-width: 320px) {
+@media only screen and (max-width: 300px) {
   /* For mobile: */
   .box-checklist {
     width: 100%;
