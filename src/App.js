@@ -5,8 +5,8 @@ import { reducer } from "./contexts/AppReducer";
 import { readData } from "./services/crudData";
 
 import { Progress } from "./components/progressPanel";
-import { TaskHeader } from "./components/taskHeader";
-import { ToDoItem } from "./components/toDoItem";
+import { TaskHeader } from "./components/TaskHeader";
+import { ToDoItem } from "./components/ToDoItem";
 import { AddTodoField } from "./components/addTodo";
 
 function App() {
