@@ -21,3 +21,6 @@ export const Loading = {
 
 export const LOAD_DATA = "LOAD DATA";
 export const ADD_DATA = "ADD DATA";
+
+export const UPDATE_DATA = "UPDATE DATA";
+export const REMOVE_DATA = "REMOVE DATA";

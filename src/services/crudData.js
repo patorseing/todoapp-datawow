@@ -1,18 +1,18 @@
-import { ADD_DATA, LOAD_DATA, LOADING } from "../contexts/AppState";
+import { ADD_DATA, LOAD_DATA, LOADING, UPDATE_DATA, REMOVE_DATA } from "../contexts/AppState";
+import { v4 as uuidv4 } from 'uuid';
 
 export const createData = async (dispatch, task) => {
   // You can await here
   try {
-    const res = await fetch(`${window.env.API_URL}`, {
+    task.id = uuidv4();
+    fetch(`${window.env.API_URL}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(task),
     });
-    const todo = await res.json();
-    await dispatch({ type: ADD_DATA, payload: todo });
-    await readData(dispatch);
+    dispatch({ type: ADD_DATA, payload: task });
   } catch (err) {
     alert(err.message);
   }
@@ -24,7 +24,7 @@ export const readData = async (dispatch) => {
   try {
     const response = await fetch(window.env.API_URL);
     const todoList = await response.json();
-    dispatch({ type: LOAD_DATA, payload: todoList });
+    await dispatch({ type: LOAD_DATA, payload: todoList });
   } catch (err) {
     alert(err.message);
     dispatch({ type: LOAD_DATA, payload: [] });
@@ -34,14 +34,14 @@ export const readData = async (dispatch) => {
 export const updateData = async (dispatch, task) => {
   // You can await here
   try {
-    await fetch(`${window.env.API_URL}/${task.id}`, {
+    fetch(`${window.env.API_URL}/${task.id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(task),
     });
-    await readData(dispatch);
+    dispatch({ type:UPDATE_DATA, payload: task });
   } catch (err) {
     alert(err.message);
   }
@@ -50,13 +50,13 @@ export const updateData = async (dispatch, task) => {
 export const deleteData = async (dispatch, id) => {
   // You can await here
   try {
-    await fetch(`${window.env.API_URL}/${id}`, {
+    fetch(`${window.env.API_URL}/${id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
       }
     });
-    await readData(dispatch)
+    dispatch({ type:REMOVE_DATA, payload: id });
   } catch (err) {
     alert(err.message);
   }
