@@ -7,12 +7,6 @@ export const display = {
 
 export const menu = ["All", "Done", "Undone"];
 export const CHANGE_MENU = "CHANGE MENU";
-export const menuConditions = (menu, todo) =>
-  ({
-    All: true,
-    Done: !!todo.completed,
-    Undone: !todo.completed,
-  }[menu]);
 
 export const LOADING = "LOADING";
 

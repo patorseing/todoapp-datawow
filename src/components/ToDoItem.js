@@ -24,16 +24,12 @@ export const ToDoItem = (props) => {
 
   const [task, setTask] = useState(props.task);
 
-  const [complete, setCompleted] = useState(task.completed);
-
   const toggleHandler = () => {
     setShow(!show);
   };
 
   const handleCheck = () => {
-    const completed = !complete;
-    const updateBody = { ...props.task, completed };
-    setCompleted(completed);
+    const updateBody = { ...props.task };
     setTask(updateBody);
     updateData(dispatch, updateBody);
   };
@@ -48,8 +44,8 @@ export const ToDoItem = (props) => {
     },
     {
       menu: "Delete",
-      fnc: (id) => {
-        deleteData(dispatch, id);
+      fnc: () => {
+        deleteData(dispatch, task.id);
         toggleHandler();
       },
     },
@@ -64,47 +60,56 @@ export const ToDoItem = (props) => {
       />
     ),
     false: (
-      <div className="col-s-9">
-        <CheckSymbol />
-        <input
-          className="checkbox-input"
-          id={`todo-${task.id}`}
-          type="checkbox"
-          defaultChecked={complete}
-          onChange={() => {
-            handleCheck();
-          }}
-        />
-        <label className="checkbox box-checklist" htmlFor={`todo-${task.id}`}>
-          <span>
-            <CheckBox />
-          </span>
-          <input
-            className="todofield"
-            type="text"
-            defaultValue={task.title}
-            disabled
-            style={{ ...inputStyle[complete] }}
-          />
-          <div className="col-1 col-m-2 col-s-3">
-            <button className="col-s-12 edit" onClick={toggleHandler}>
-              <EllipsisH />
-            </button>
-            <div
-              className="col-1 col-m-2 col-s-3 dropdown-edit"
-              style={{ ...display[show] }}
-            >
-              {menus.map((menu, i) => (
-                <MenuButton
-                  expect={menu.menu}
-                  fnc={menu.fnc}
-                  main={task.id}
-                  key={i}
-                />
-              ))}
+      <div className="root-container">
+        <div className="input-container">
+          <div className="box-checklist">
+            <CheckSymbol />
+            <input
+              className="checkbox-input"
+              id={`todo-${task.id}`}
+              type="checkbox"
+              defaultChecked={task.completed}
+              onChange={() => {
+                handleCheck();
+              }}
+            />
+            <label className="checkbox" htmlFor={`todo-${task.id}`}>
+              <span>
+                <CheckBox />
+              </span>
+            </label>
+            <div className="box-checklist-show">
+              <input
+                className="todofield"
+                type="text"
+                defaultValue={task.title}
+                disabled
+                style={{ ...inputStyle[task.completed] }}
+              />
+            </div>
+            <div className="toolkit-edit">
+              <button
+                className="edit"
+                aria-haspopup="true"
+                onClick={toggleHandler}
+              >
+                <EllipsisH />
+              </button>
+              <div className="dropdown-edit" style={{ ...display[show] }}>
+                <div className="group-edit">
+                  {menus.map((menu, i) => (
+                    <MenuButton
+                      expect={menu.menu}
+                      fnc={menu.fnc}
+                      main={task.id}
+                      key={i}
+                    />
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
-        </label>
+        </div>
       </div>
     ),
   };

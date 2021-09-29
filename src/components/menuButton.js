@@ -2,7 +2,6 @@ import classnames from "classnames";
 
 export const MenuButton = (props) => {
   const { main, expect, fnc } = props;
-
   return (
     <button
       className={classnames(
@@ -12,7 +11,7 @@ export const MenuButton = (props) => {
         },
         { "color-delete": expect === "Delete" }
       )}
-      onClick={() => fnc(main)}
+      onClick={() => fnc(expect)}
     >
       <p>{expect}</p>
     </button>

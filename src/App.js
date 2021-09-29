@@ -6,7 +6,7 @@ import { readData } from "./services/crudData";
 
 import { Progress } from "./components/progressPanel";
 import { TaskHeader } from "./components/TaskHeader";
-import { ToDoItem } from "./components/ToDoItem";
+import { TodoPanel } from "./components/toDoPanel";
 import { AddTodoField } from "./components/addTodo";
 
 function App() {
@@ -20,13 +20,15 @@ function App() {
   return (
     <AppContext.Provider value={{ state, dispatch }}>
       <div className="App">
-        <div className="col-6 col-m-8 col-s-10 box">
-          <Progress />
-          <TaskHeader />
-          {state.todoList.map((task, i) => (
-            <ToDoItem task={task} key={i} />
-          ))}
-          <AddTodoField />
+        <div className="root-container">
+          <div className="box">
+            <div className="root-container">
+              <Progress />
+              <TaskHeader />
+            </div>
+            <TodoPanel />
+            <AddTodoField />
+          </div>
         </div>
       </div>
     </AppContext.Provider>

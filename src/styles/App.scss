@@ -10,8 +10,12 @@
   justify-content: center;
 }
 
-* {
-  box-sizing: border-box;
+.root-container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat($col-num, $col-width);
+  column-gap: $column-gap;
+  row-gap: $row-gap;
 }
 
 .box {
@@ -31,6 +35,7 @@
   text-align: left;
   margin-top: 7.25%;
   padding: 15px;
+  grid-column: 2 / 12;
 }
 
 .progress {
@@ -43,19 +48,6 @@
   font-size: 150%;
 }
 
-#myProgress {
-  width: 100%;
-  background-color: $bg-graph;
-  border-radius: 999px;
-}
-
-#myBar {
-  width: 1%;
-  height: 7.34px;
-  background-color: $decoration;
-  border-radius: 999px;
-}
-
 .completed {
   color: $light;
   margin: 1% 0%;
@@ -66,28 +58,72 @@
 }
 
 .box-task {
-  margin-top: 2.5%;
+  display: flex;
+  grid-column: 2 / 12;
+}
+
+.task-container {
+  display: grid;
+  grid-template-columns: repeat($col-num, $col-width);
+  grid-template-rows: $row-width $row-width;
+  column-gap: $column-gap;
+  row-gap: $row-gap;
 }
 
 .task {
-  margin: 0;
-  margin-bottom: 2%;
+  justify-self: center;
+  align-self: center;
   font-style: normal;
   font-weight: 500;
   font-size: 135%;
-  line-height: 33px;
-  text-align: left;
-  padding: 0;
+  grid-column: 1;
+  display: flex;
+}
+
+.loadind-icon {
+  grid-column: 2;
+  justify-self: center;
+  align-self: center;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 135%;
+  display: flex;
+}
+
+.loading {
+  margin-left: 15%;
+}
+
+.loading svg {
+  animation: loading-spin infinite 2s linear;
+}
+
+@keyframes loading-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.toolkit-edit {
+  position: relative;
+  display: grid;
+  grid-column: 13;
 }
 
 .dropdown {
-  padding: 0;
-  margin-top: 0.45rem;
+  margin-top: 7.5%;
+  display: inline-block;
+  align-self: center;
+  justify-self: center;
 }
 
-.dropbtn {
-  display: flex;
-  padding: 0.25rem;
+.edit {
+  border-radius: 999px;
+  align-self: center;
+  justify-self: end;
 }
 
 button {
@@ -96,12 +132,23 @@ button {
   cursor: pointer;
 }
 
-button.dropbtn > p {
-  text-align: left;
+.dropbtn {
+  display: grid;
+  grid-template-columns: repeat($col-num, $col-width);
+  padding: 5px;
+}
+
+.dropbtn p {
+  justify-self: center;
+  align-self: center;
+  grid-column: 1;
   margin: 0;
-  margin-left: 2.5%;
-  padding: 0;
-  font-size: 100%;
+}
+
+.dropbtn svg {
+  justify-self: center;
+  align-self: center;
+  grid-column: 12;
 }
 
 .dropdown .dropbtn {
@@ -111,17 +158,24 @@ button.dropbtn > p {
   border-radius: 10px;
 }
 
+.menu-active p {
+  color: $decoration;
+  background-color: $primary;
+}
+
 .dropdown-content {
-  margin-top: 2rem;
-  position: absolute;
+  z-index: 3;
+}
+
+.group-edit {
+  display: grid;
   background-color: $decoration;
-  z-index: 1;
   box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   padding: 0.5rem 0.5rem 0 0.5rem;
 }
 
-.dropdown-content button {
+.group-edit button {
   color: $contrast;
   text-decoration: none;
   display: block;
@@ -131,49 +185,109 @@ button.dropbtn > p {
   align-items: center;
 }
 
-.dropdown-content p {
+.group-edit p {
+  padding: 0.25rem 0.5rem;
+  border-radius: 8px;
+  margin: 0 0 0.5rem 0;
+  font-size: 100%;
+  padding-right: 2rem;
+}
+
+.group-edit p:hover {
+  color: $decoration;
+  background-color: $primary;
+}
+
+.group {
+  display: grid;
+  background-color: $decoration;
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  padding: 0.5rem 0.5rem 0 0.5rem;
+}
+
+.group button {
+  color: $contrast;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+  font-size: 0.75rem;
+  padding: 0;
+  align-items: center;
+}
+
+.group p {
   padding: 0.25rem 0.5rem;
   border-radius: 8px;
   margin: 0 0 0.5rem 0;
   font-size: 100%;
 }
 
-.dropdown-edit p {
-  padding: 0.25rem 0.5rem;
-  border-radius: 8px;
-  margin: 0.5rem 0;
-}
-
-.dropdown-content p:hover {
+.group p:hover {
   color: $decoration;
   background-color: $primary;
 }
 
-.dropdown-edit p:hover {
-  color: $decoration;
-  background-color: $primary;
+.input-container {
+  width: 100%;
+  display: grid;
+  grid-column: 1 / 13;
+  grid-template-columns: repeat($col-num, $col-width);
+  grid-template-rows: $row-width + $row-width;
+  margin-bottom: 2.25rem;
 }
 
 .box-checklist {
-  background: $decoration;
-  border-radius: 999px !important;
-  text-align: left;
-  padding: 15px;
-  display: block;
-  height: 57px;
+  grid-column: 2 / 12;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat($col-num, $col-width);
+  background-color: $decoration;
+  border-radius: 999px;
+  padding: 1%;
 }
 
-.box-checklist-input {
-  margin-top: 20px;
+input[type="text"]:disabled {
+  background-color: $decoration;
+  cursor: pointer;
 }
 
-.box-checklist-input:last-child {
-  margin-bottom: 7.25%;
+input:focus {
+  outline: none;
 }
 
-button.edit path {
-  fill: $icon;
+.box-checklist-input .box-checklist-show {
+  border-radius: 999px;
+}
+
+.todofield {
+  border: 0;
+  font-size: 0.85rem;
   width: 100%;
+  height: 100%;
+  border-radius: 999px;
+}
+
+.box-checklist-save {
+  align-self: center;
+}
+
+.save-btn {
+  width: 100%;
+  background-color: $primary;
+  color: $decoration;
+  border-radius: 999px;
+  padding: 5px 0px;
+  height: 36px;
+}
+
+.dropdown-edit {
+  z-index: 1;
+  position: absolute;
+  will-change: transform;
+  top: 0px;
+  left: 0px;
+  transform: translate3d(-65px, 37px, 0px);
 }
 
 .checkbox-symbol {
@@ -186,6 +300,7 @@ button.edit path {
 
 .checkbox-input {
   visibility: hidden;
+  display: none;
 }
 
 .checkbox {
@@ -194,22 +309,23 @@ button.edit path {
   border-radius: 6px;
   overflow: hidden;
   display: flex;
+  align-self: center;
+  justify-self: center;
 }
 
 .checkbox span {
-  width: 1.5rem;
-  height: 1.35rem;
+  width: 1rem;
+  height: 1.5rem;
   border-radius: 6px;
   transform: scale(1);
   transition: all 0.3s ease;
   border: 2px solid $primary;
-  margin-top: 0.5%;
 }
 
 .checkbox span:first-child svg {
   position: absolute;
-  top: 4px;
-  left: 2px;
+  top: 7px;
+  left: 6px;
   fill: none;
   stroke: $decoration;
   stroke-dasharray: 16px;
@@ -232,88 +348,131 @@ button.edit path {
   stroke-dashoffset: 0;
 }
 
+.color-delete {
+  color: $second !important;
+}
+
 @keyframes zoom-in-out {
   50% {
     transform: scale(0.9);
   }
 }
 
-.todofield {
-  border: 0;
-  font-size: 0.85rem;
-  width: 100%;
-  margin-left: 2%;
-}
-
-input[type="text"]:disabled {
-  background-color: $decoration;
-  cursor: pointer;
-}
-
-input:focus {
-  outline: none;
-}
-
-.dropdown-edit {
-  margin-top: 1.5rem;
-  position: absolute;
-  background-color: $decoration;
-  z-index: 1;
-  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
-  padding: 0 0.5rem 0 0.5rem;
-  font-size: 75%;
-  float: left;
-}
-
-.dropdown-edit button {
-  color: $contrast;
-  text-decoration: none;
-  text-align: left;
-  font-size: 0.75rem;
-  padding: 0;
-  align-items: center;
-}
-
-.edit {
-  float: right;
-  margin-top: 10%;
-}
-
-.color-delete {
-  color: $second !important;
-}
-
-.save-btn {
-  background-color: $primary;
-  border-radius: 999px;
-  color: $decoration;
-  padding: 6px 12px;
-  font-size: smaller;
-  float: right;
-}
-
-.menu-active p {
-  color: $decoration;
-  background-color: $primary;
-}
-
-.loading svg {
-  animation: App-logo-spin infinite 2s linear;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media only screen and (max-width: 300px) {
+@media only screen and (min-width: 320px) {
   /* For mobile: */
-  .box-checklist {
-    width: 100%;
+  .box {
+    grid-column: 2 / 12;
   }
+  .dropdown {
+    grid-column: 6 / 13;
+  }
+  .dropdown-content {
+    grid-column: 6 / 13;
+  }
+  .box-checklist-input {
+    grid-column: 1 / 9;
+  }
+  .box-checklist-save {
+    grid-column: 9 / 13;
+  }
+  .checkbox {
+    grid-column: 2;
+  }
+  .box-checklist-show {
+    grid-column: 4 / 13;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  /* For tablets: */
+  .box {
+    grid-column: 3 / 11;
+  }
+  .dropdown {
+    grid-column: 9 / 13;
+  }
+  .dropdown-content {
+    grid-column: 9 / 13;
+  }
+  .box-checklist-input {
+    grid-column: 1 / 11;
+  }
+  .box-checklist-save {
+    grid-column: 11 / 13;
+  }
+  .checkbox {
+    grid-column: 1;
+    margin-left: 50%;
+  }
+  .box-checklist-show {
+    grid-column: 2 / 13;
+    margin-left: 5%;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  /* For desktop: */
+  .box {
+    grid-column: 3 / 11;
+  }
+  .dropdown {
+    grid-column: 10 / 13;
+  }
+  .dropdown-content {
+    grid-column: 10 / 13;
+  }
+  .box-checklist-input {
+    grid-column: 1 / 11;
+  }
+  .box-checklist-save {
+    grid-column: 11 / 13;
+  }
+  .checkbox {
+    grid-column: 1;
+    margin-left: 0;
+  }
+  .box-checklist-show {
+    grid-column: 2 / 13;
+    margin-left: 0;
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+  /* For desktop L: */
+  .box {
+    grid-column: 4 / 10;
+  }
+  .dropdown {
+    grid-column: 11 / 13;
+  }
+  .dropdown-content {
+    grid-column: 11 / 13;
+  }
+}
+
+@media only screen and (min-width: 2560px) {
+  /* For desktop XL: */
+  .box {
+    grid-column: 4 / 10;
+  }
+  .dropdown {
+    grid-column: 11 / 13;
+  }
+  .dropdown-content {
+    grid-column: 11 / 13;
+  }
+  .box-checklist-input {
+    grid-column: 1 / 12;
+  }
+  .box-checklist-save {
+    grid-column: 12;
+  }
+  .box-checklist-show {
+    grid-column: 2 / 13;
+    margin-left: 0;
+  }
+}
+
+.last {
+  margin-bottom: 7.25%;
 }

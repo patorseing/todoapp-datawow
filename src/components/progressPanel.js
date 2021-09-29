@@ -20,7 +20,7 @@ export const Progress = () => {
   };
 
   return (
-    <div className="col-9 col-s-9 box-progress">
+    <div className="box-progress">
       <p className="progress">
         Progress
       </p>

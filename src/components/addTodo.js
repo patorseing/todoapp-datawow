@@ -2,6 +2,7 @@ import { useState, useContext, useEffect } from "react";
 import { createData, updateData } from "../services/crudData";
 import { AppContext } from "../contexts/AppContext";
 import { display } from '../contexts/AppState';
+import classNames from "classnames";
 
 export const AddTodoField = (props) => {
   const { todo, switchShow, setTaskItem } = props;
@@ -12,12 +13,12 @@ export const AddTodoField = (props) => {
   const { dispatch } = useContext(AppContext);
 
   const func = {
-    true: (task) => {
+    true: () => {
       updateData(dispatch, task);
       switchShow(false);
       setTaskItem(task);
     },
-    false: (task) => {
+    false: () => {
       createData(dispatch, task);
     },
   };
@@ -58,30 +59,28 @@ export const AddTodoField = (props) => {
     save();
   };
 
-  const ToggleShowStyles = (showed) => ({
-    display: display[showed],
-  });
-
   return (
-    <div className="col-s-9 box-checklist box-checklist-input">
-      <div className="col-s-8 col-m-10">
-        <input
-          className="todofield"
-          type="text"
-          name="todo"
-          placeholder="Add your todo..."
-          onKeyDown={keyPress}
-          value={task.title}
-          onChange={handleChange}
-          onFocus={() => {
-            setShow(true);
-          }}
-        />
-      </div>
-      <div className="col-s-4 col-m-2" style={ToggleShowStyles(show)}>
-        <button className="save-btn" onClick={handleSave}>
-          Save
-        </button>
+    <div className={classNames('input-container', {"last": !edit})}>
+      <div className="box-checklist">
+        <div className="box-checklist-input">
+          <input
+            className="todofield"
+            type="text"
+            name="todo"
+            placeholder="Add your todo..."
+            onKeyDown={keyPress}
+            value={task.title}
+            onChange={handleChange}
+            onFocus={() => {
+              setShow(true);
+            }}
+          />
+        </div>
+        <div className='box-checklist-save' style={{...display[show]}}>
+          <button className="save-btn" onClick={handleSave}>
+            Save
+          </button>
+        </div>
       </div>
     </div>
   );
