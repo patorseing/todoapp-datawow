@@ -1,14 +1,17 @@
 import { useState, useContext } from "react";
-import { MenuButton } from "./menuButton";
-import { updateData, deleteData } from "../services/crudData";
-import { AppContext } from "../contexts/AppContext";
-import { AddTodoField } from "./addTodo";
-import { display } from "../contexts/AppState";
-import { CheckSymbol } from "../res/checkSymbol";
-import { CheckBox } from "../res/checkBox";
+import { CheckBox } from "./checkBox";
 import { EllipsisH } from "../res/ellipsisH";
+import { display } from "../contexts/AppState";
+import { MenuButton } from "./menuButton";
+import { AddTodoField } from "./addTodo";
+import { deleteData } from "../services/crudData";
+import { AppContext } from "../contexts/AppContext";
 
 export const ToDoItem = (props) => {
+  const { task } = props;
+  const { dispatch } = useContext(AppContext);
+  const [showEdit, setShowEdit] = useState(false);
+  const [show, setShow] = useState(false);
   const inputStyle = {
     true: {
       textDecorationLine: "line-through",
@@ -17,21 +20,6 @@ export const ToDoItem = (props) => {
     false: {
       color: "black",
     },
-  };
-  const [show, setShow] = useState(false);
-  const [showEdit, setShowEdit] = useState(false);
-  const { dispatch } = useContext(AppContext);
-
-  const [task, setTask] = useState(props.task);
-
-  const toggleHandler = () => {
-    setShow(!show);
-  };
-
-  const handleCheck = () => {
-    const updateBody = { ...props.task };
-    setTask(updateBody);
-    updateData(dispatch, updateBody);
   };
 
   const menus = [
@@ -51,41 +39,28 @@ export const ToDoItem = (props) => {
     },
   ];
 
-  const item = {
+  const toggleHandler = () => {
+    setShow(!show);
+  };
+
+  const component = {
     true: (
       <AddTodoField
         todo={task}
         switchShow={setShowEdit}
-        setTaskItem={setTask}
       />
     ),
     false: (
       <div className="root-container">
         <div className="input-container">
           <div className="box-checklist">
-            <CheckSymbol />
-            <input
-              className="checkbox-input"
-              id={`todo-${task.id}`}
-              type="checkbox"
-              defaultChecked={task.completed}
-              onChange={() => {
-                handleCheck();
-              }}
-            />
-            <label className="checkbox" htmlFor={`todo-${task.id}`}>
-              <span>
-                <CheckBox />
-              </span>
-            </label>
+            <div className="checkbox">
+              <CheckBox task={task} />
+            </div>
             <div className="box-checklist-show">
-              <input
-                className="todofield"
-                type="text"
-                defaultValue={task.title}
-                disabled
-                style={{ ...inputStyle[task.completed] }}
-              />
+              <p className="todofield" style={inputStyle[task.completed]}>
+                {task.title}
+              </p>
             </div>
             <div className="toolkit-edit">
               <button
@@ -113,6 +88,5 @@ export const ToDoItem = (props) => {
       </div>
     ),
   };
-
-  return item[showEdit];
+  return component[showEdit];
 };

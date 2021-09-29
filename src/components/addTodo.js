@@ -5,7 +5,7 @@ import { display } from '../contexts/AppState';
 import classNames from "classnames";
 
 export const AddTodoField = (props) => {
-  const { todo, switchShow, setTaskItem } = props;
+  const { todo, switchShow } = props;
   const initTodo = { title: "", completed: false };
   const [show, setShow] = useState(false);
   const [edit, setEdit] = useState(false);
@@ -16,7 +16,6 @@ export const AddTodoField = (props) => {
     true: () => {
       updateData(dispatch, task);
       switchShow(false);
-      setTaskItem(task);
     },
     false: () => {
       createData(dispatch, task);
@@ -64,7 +63,7 @@ export const AddTodoField = (props) => {
       <div className="box-checklist">
         <div className="box-checklist-input">
           <input
-            className="todofield"
+            className="todofield-input"
             type="text"
             name="todo"
             placeholder="Add your todo..."

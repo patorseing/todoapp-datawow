@@ -5,5 +5,5 @@ import { ToDoItem } from "./ToDoItem";
 export const TodoPanel = () => {
   const { state } = useContext(AppContext);
 
-  return <>{state.todoList.map((task, i) => <ToDoItem task={task} key={i} />)}</>;
+  return state.todoList.map((task, i) => <ToDoItem task={task} key={i} />);
 };
