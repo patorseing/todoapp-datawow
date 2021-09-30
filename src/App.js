@@ -9,6 +9,10 @@ import { TaskHeader } from "./components/TaskHeader";
 import { TodoPanel } from "./components/toDoPanel";
 import { AddTodoField } from "./components/addTodo";
 
+import registerFaIcons from './res/registerFaIcons';
+
+registerFaIcons();
+
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
 

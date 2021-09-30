@@ -3,9 +3,9 @@ import { Checked } from "../res/checked";
 import { Unchecked } from "../res/unchecked";
 import { AppContext } from "../contexts/AppContext";
 import { updateData } from "../services/crudData";
+import PropTypes from "prop-types"
 
-export const CheckBox = (props) => {
-  let { task } = props;
+export const CheckBox = ({ task }) => {
   const { dispatch } = useContext(AppContext);
 
   const item = {
@@ -22,3 +22,11 @@ export const CheckBox = (props) => {
     </span>
   );
 };
+
+CheckBox.propTypes = {
+  task: PropTypes.shape({
+    id: PropTypes.string,
+    title: PropTypes.string,
+    completed: PropTypes.bool,
+  })
+}

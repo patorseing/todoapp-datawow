@@ -4,8 +4,7 @@ import { AppContext } from "../contexts/AppContext";
 import { display } from '../contexts/AppState';
 import classNames from "classnames";
 
-export const AddTodoField = (props) => {
-  const { todo, switchShow } = props;
+export const AddTodoField = ({ todo, switchShow }) => {
   const initTodo = { title: "", completed: false };
   const [show, setShow] = useState(false);
   const [edit, setEdit] = useState(false);

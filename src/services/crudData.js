@@ -1,5 +1,11 @@
-import { ADD_DATA, LOAD_DATA, LOADING, UPDATE_DATA, REMOVE_DATA } from "../contexts/AppState";
-import { v4 as uuidv4 } from 'uuid';
+import {
+  ADD_DATA,
+  LOAD_DATA,
+  LOADING,
+  UPDATE_DATA,
+  REMOVE_DATA,
+} from "../contexts/AppState";
+import { v4 as uuidv4 } from "uuid";
 
 export const createData = async (dispatch, task) => {
   // You can await here
@@ -41,7 +47,7 @@ export const updateData = async (dispatch, task) => {
       },
       body: JSON.stringify(task),
     });
-    dispatch({ type:UPDATE_DATA, payload: task });
+    dispatch({ type: UPDATE_DATA, payload: task });
   } catch (err) {
     alert(err.message);
   }
@@ -54,9 +60,9 @@ export const deleteData = async (dispatch, id) => {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
-      }
+      },
     });
-    dispatch({ type:REMOVE_DATA, payload: id });
+    dispatch({ type: REMOVE_DATA, payload: id });
   } catch (err) {
     alert(err.message);
   }

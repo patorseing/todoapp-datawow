@@ -1,11 +1,10 @@
 import classnames from "classnames";
+import PropTypes from "prop-types";
 
-export const MenuButton = (props) => {
-  const { main, expect, fnc } = props;
+export const MenuButton = ({ main, expect, fnc }) => {
   return (
     <button
       className={classnames(
-        "col-s-12",
         {
           "menu-active": main === expect,
         },
@@ -17,3 +16,9 @@ export const MenuButton = (props) => {
     </button>
   );
 };
+
+MenuButton.propTypes = {
+  main: PropTypes.string,
+  expect: PropTypes.string,
+  fnc: PropTypes.func.isRequired,
+}

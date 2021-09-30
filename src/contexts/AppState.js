@@ -13,7 +13,7 @@ export const LOADING = "LOADING";
 export const Loading = {
   true: (
     <span className="loading">
-      <FontAwesomeIcon icon="spinner" />
+      <FontAwesomeIcon icon="spinner" title="spinner"/>
     </span>
   ),
   false: <></>,

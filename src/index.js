@@ -5,14 +5,6 @@ import "./styles/index.scss";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
-import { library } from "@fortawesome/fontawesome-svg-core";
-import {
-  faChevronDown,
-  faSpinner,
-} from "@fortawesome/free-solid-svg-icons";
-
-library.add(faChevronDown, faSpinner);
-
 ReactDOM.render(
   <React.StrictMode>
     <App />

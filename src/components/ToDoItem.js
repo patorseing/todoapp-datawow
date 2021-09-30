@@ -6,9 +6,9 @@ import { MenuButton } from "./menuButton";
 import { AddTodoField } from "./addTodo";
 import { deleteData } from "../services/crudData";
 import { AppContext } from "../contexts/AppContext";
+import PropTypes from "prop-types"
 
-export const ToDoItem = (props) => {
-  const { task } = props;
+export const ToDoItem = ({ task }) => {
   const { dispatch } = useContext(AppContext);
   const [showEdit, setShowEdit] = useState(false);
   const [show, setShow] = useState(false);
@@ -44,12 +44,7 @@ export const ToDoItem = (props) => {
   };
 
   const component = {
-    true: (
-      <AddTodoField
-        todo={task}
-        switchShow={setShowEdit}
-      />
-    ),
+    true: <AddTodoField todo={task} switchShow={setShowEdit} />,
     false: (
       <div className="root-container">
         <div className="input-container">
@@ -90,3 +85,11 @@ export const ToDoItem = (props) => {
   };
   return component[showEdit];
 };
+
+ToDoItem.propTypes = {
+  task: PropTypes.shape({
+    id: PropTypes.string,
+    title: PropTypes.string,
+    completed: PropTypes.bool,
+  })
+}

@@ -21,11 +21,11 @@ export const TaskHeader = () => {
     <div className="box-task">
       <div className="task-container">
         <p className="task">Tasks</p>
-        <p className="loadind-icon">{Loading[state.loading]}</p>
+        <p className="loading-icon">{Loading[state.loading]}</p>
         <div className="dropdown">
           <button className="dropbtn" onClick={toggleHandler}>
             <p>{state.menu}</p>
-            <FontAwesomeIcon icon="chevron-down" className="" />
+            <FontAwesomeIcon icon="chevron-down" title="chevron-down" />
           </button>
         </div>
         <div className="dropdown-content" style={{ ...display[show] }}>
