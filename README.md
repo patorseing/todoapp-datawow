@@ -11,6 +11,8 @@ yarn
 yarn start
 ```
 
+*** run parallel with api
+
 ### 2. Set API
 
 ```bash
