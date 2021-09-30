@@ -1,13 +1,11 @@
 import React from "react";
 import { render, screen, within } from "@testing-library/react";
 import App from "./App";
-// import { getToDoList } from "./mock/api";
-// import { act } from "react-dom/test-utils";
 
 window.alert = jest.fn();
 
 describe("render app", () => {
-  it("init state", async () => {
+  it("init render", async () => {
     render(<App />);
     const Progress = screen.getByText(/progress/i);
     expect(Progress).toBeInTheDocument();

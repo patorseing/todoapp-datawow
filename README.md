@@ -2,11 +2,13 @@
 
 ## Run the app
 
-### 1. Set local App
+### 1. Start the App
 
 ```bash
-mkdir ToDoApp
-cd ToDoApp
+git clone https://github.com/patorseing/todoapp-datawow.git
+cd todoapp-wowdata
+yarn
+yarn start
 ```
 
 ### 2. Set API
@@ -18,16 +20,32 @@ yarn
 yarn start
 ```
 
-### 3. Start the App
+### 3. Test the app
+
+#### IDE (recommend)
+
+- have to open app and api
+- open selenium (extension in chrome)
+- open (src/test/testcase.side) in selenium
+- pick a test and run
+
+#### cmd
+
+It is export from selenium IDE.
+
+- have to open app and api
+- pick a test and run in folder test or App.test.js
 
 ```bash
-git clone https://github.com/patorseing/todoapp-wowdata.git
-cd todoapp-wowdata
-yarn
-yarn start
+yarn test -u -t=<name>
+
+#eg
+yarn test -u -t=App
+yarn test -u -t=1
+yarn test -u -t=2
 ```
 
-### 4. Test the app
+*** not recommend because it is not stable
 
 ## Getting Started with Create React App
 
