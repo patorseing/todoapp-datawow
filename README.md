@@ -2,18 +2,7 @@
 
 ## Run the app
 
-### 1. Start the App
-
-```bash
-git clone https://github.com/patorseing/todoapp-datawow.git
-cd todoapp-wowdata
-yarn
-yarn start
-```
-
-*** run parallel with api
-
-### 2. Set API
+### 1. Set API
 
 ```bash
 git clone https://github.com/datawowio/todos-json-server.git
@@ -21,6 +10,16 @@ cd todos-json-server
 yarn
 yarn start
 ```
+
+### 2.  Start the App
+
+```bash
+git clone https://github.com/patorseing/todoapp-datawow.git
+cd todoapp-wowdata
+yarn
+yarn start
+```
+*** run parallel with api
 
 ### 3. Test the app
 
